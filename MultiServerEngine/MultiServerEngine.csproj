@@ -76,11 +76,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\Interfaces\IConfiguration.cs" />
+    <Compile Include="Configuration\Implementation\ServerConfiguration.cs" />
+    <Compile Include="Configuration\Interfaces\IServerConfiguration.cs" />
+    <Compile Include="Engine\Implementation\ServerEngine.cs" />
     <Compile Include="Engine\Interfaces\IServerApplication.cs" />
+    <Compile Include="Peer\Client\Implementation\ClientPeer.cs" />
+    <Compile Include="Peer\Client\Implementation\ClientPeerFactory.cs" />
+    <Compile Include="Peer\Client\Implementation\ClientPeerList.cs" />
     <Compile Include="Peer\Client\Interfaces\IClientPeer.cs" />
     <Compile Include="Peer\Client\Interfaces\IClientPeerFactory.cs" />
     <Compile Include="Peer\Client\Interfaces\IClientPeerList.cs" />
+    <Compile Include="Peer\Server\Implementation\ServerPeer.cs" />
+    <Compile Include="Peer\Server\Implementation\ServerPeerFactory.cs" />
+    <Compile Include="Peer\Server\Implementation\ServerPeerList.cs" />
+    <Compile Include="Peer\Server\Implementation\ServerType.cs" />
     <Compile Include="Peer\Server\Interfaces\IServerPeer.cs" />
     <Compile Include="Peer\Server\Interfaces\IServerPeerFactory.cs" />
     <Compile Include="Peer\Server\Interfaces\IServerPeerList.cs" />
@@ -97,12 +106,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Configuration\Implementation\" />
-    <Folder Include="Engine\Implementation\" />
     <Folder Include="Operation\Implementation\" />
     <Folder Include="Operation\Interfaces\" />
-    <Folder Include="Peer\Client\Implementation\" />
-    <Folder Include="Peer\Server\Implementation\" />
     <Folder Include="Telegram\Implementation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
