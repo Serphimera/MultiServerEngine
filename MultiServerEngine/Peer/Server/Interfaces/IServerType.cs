@@ -2,5 +2,6 @@
 {
     public interface IServerType
     {
+        IServerType GetType();
     }
 }

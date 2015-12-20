@@ -20,8 +20,21 @@ namespace MultiServerEngine.Peer.Server.Implementation
 
         public T CreateServerPeer<T>(IConfiguration configuration) where T : ServerPeerBase
         {
-            InitResponse initResponse = configuration.GetConfiguration<InitResponse>();
-            return new ServerPeer(initResponse.Protocol, initResponse.PhotonPeer, Logger, ServerApplication) as T;
+            if (configuration.GetConfiguration<InitResponse>() != null)
+            {
+                Logger.InfoFormat("Received request for creating a server peer");
+                InitResponse initResponse = configuration.GetConfiguration<InitResponse>();
+                return new ServerPeer(initResponse.Protocol, initResponse.PhotonPeer, Logger, ServerApplication, configuration) as T;
+            }
+
+            if (configuration.GetConfiguration<InitRequest>() != null)
+            {
+                Logger.InfoFormat("Received request for creating a subserver peer");
+                InitRequest initRequest = configuration.GetConfiguration<InitRequest>();
+                return new ServerPeer(initRequest.Protocol, initRequest.PhotonPeer, Logger, ServerApplication, configuration) as T;
+            }
+
+            return null;
         }
     }
 }

@@ -6,5 +6,7 @@
         void TearDown();
         void OnStopRequested();
         void OnServerConnectionFailed(int errorCode, string errorMessage, object state);
+
+        string GetApplicationName();
     }
 }

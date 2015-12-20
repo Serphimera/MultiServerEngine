@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LoginServer" GeneratedClassName="LoginServer">
+  <Profiles />
+  <Settings>
+    <Setting Name="TcpPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4540</Value>
+    </Setting>
+    <Setting Name="ApplicationName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">LoginServer</Value>
+    </Setting>
+    <Setting Name="MasterServerIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="MasterServerPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4520</Value>
+    </Setting>
+    <Setting Name="MasterServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MasterServer</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

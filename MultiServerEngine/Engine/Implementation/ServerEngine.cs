@@ -8,7 +8,9 @@ using log4net.Config;
 using MultiServerEngine.Configuration.Implementation;
 using MultiServerEngine.Configuration.Interfaces;
 using MultiServerEngine.Engine.Interfaces;
+using MultiServerEngine.Peer.Client.Implementation;
 using MultiServerEngine.Peer.Client.Interfaces;
+using MultiServerEngine.Peer.Server.Implementation;
 using MultiServerEngine.Peer.Server.Interfaces;
 using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
@@ -23,13 +25,36 @@ namespace MultiServerEngine.Engine.Implementation
         private IClientPeerFactory ClientFactory { get; set; }
         private IServerApplication Server { get; set; }
 
+        
+        /// <summary>
+        /// Creates incoming sub server peers and real client peers
+        /// </summary>
+        /// <param name="initRequest">Provides initial request parameters</param>
+        /// <returns>Incoming subserver peer or incoming real client peer of type PeerBase</returns>
         protected override PeerBase CreatePeer(InitRequest initRequest)
         {
-            IConfiguration conf = new ClientConfiguration();
-            conf.AddConfiguration(initRequest);
-            return ClientFactory.CreateClientPeer<PeerBase>(conf);
+            // Handle intialization request for subserver peers
+            if (initRequest.LocalPort == 4520)
+            {
+                IConfiguration conf = new ServerConfiguration();
+                conf.AddConfiguration(initRequest);
+                return ServerFactory.CreateServerPeer<ServerPeerBase>(conf);
+            }
+            // Handle initialization request for real client peers
+            else
+            {
+                IConfiguration conf = new ClientConfiguration();
+                conf.AddConfiguration(initRequest);
+                return ClientFactory.CreateClientPeer<PeerBase>(conf);
+            }
         }
-
+        
+        /// <summary>
+        /// Creates outgoing subserver peers
+        /// </summary>
+        /// <param name="initResponse">Provides initial response parameters</param>
+        /// <param name="state">A state object</param>
+        /// <returns>Outgoing subserver peer of type ServerPeerBase</returns>
         protected override ServerPeerBase CreateServerPeer(InitResponse initResponse, object state)
         {
             IConfiguration conf = new ServerConfiguration();
@@ -55,8 +80,8 @@ namespace MultiServerEngine.Engine.Implementation
 
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterInstance(this).SingleInstance();
-            builder.RegisterType<IServerPeerFactory>();
-            builder.RegisterType<IClientPeerFactory>();
+            builder.RegisterType<ServerPeerFactory>().As<IServerPeerFactory>();
+            builder.RegisterType<ClientPeerFactory>().As<IClientPeerFactory>();
             builder.RegisterType<IServerApplication>();
             builder.RegisterInstance(Logger).As<ILogger>();
             builder.RegisterModule(new XmlFileReader(Path.Combine(BinaryPath, "Modules\\" + ApplicationName + ".config")));
