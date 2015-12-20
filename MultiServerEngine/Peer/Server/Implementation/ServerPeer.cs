@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExitGames.Logging;
+using MultiServerEngine.Engine.Interfaces;
 using MultiServerEngine.Peer.Server.Interfaces;
 using Photon.SocketServer;
 using Photon.SocketServer.ServerToServer;
@@ -8,41 +9,43 @@ namespace MultiServerEngine.Peer.Server.Implementation
 {
     public class ServerPeer : ServerPeerBase, IServerPeer
     {
-        public ServerPeer(IRpcProtocol protocol, IPhotonPeer unmanagedPeer) : base(protocol, unmanagedPeer)
+        private ILogger Logger { get; set; }
+        private IServerApplication ServerApplication { get; set; }
+
+        public ServerPeer(IRpcProtocol protocol, IPhotonPeer unmanagedPeer, ILogger logger,
+            IServerApplication serverApplication) : base(protocol, unmanagedPeer)
         {
+            Logger = logger;
+            ServerApplication = serverApplication;
         }
 
         protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters)
         {
-            throw new NotImplementedException();
         }
 
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)
         {
-            throw new NotImplementedException();
         }
 
         protected override void OnEvent(IEventData eventData, SendParameters sendParameters)
         {
-            throw new NotImplementedException();
         }
 
         protected override void OnOperationResponse(OperationResponse operationResponse, SendParameters sendParameters)
         {
-            throw new NotImplementedException();
         }
 
         public bool Register()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool Connect()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        public new virtual bool Disconnect()
+        public new bool Disconnect()
         {
             base.Disconnect();
             return true;

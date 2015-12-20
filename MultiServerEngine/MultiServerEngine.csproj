@@ -76,8 +76,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Implementation\ClientConfiguration.cs" />
     <Compile Include="Configuration\Implementation\ServerConfiguration.cs" />
-    <Compile Include="Configuration\Interfaces\IServerConfiguration.cs" />
+    <Compile Include="Configuration\Interfaces\IConfiguration.cs" />
     <Compile Include="Engine\Implementation\ServerEngine.cs" />
     <Compile Include="Engine\Interfaces\IServerApplication.cs" />
     <Compile Include="Peer\Client\Implementation\ClientPeer.cs" />

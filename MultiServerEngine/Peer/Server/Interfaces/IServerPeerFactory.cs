@@ -5,6 +5,6 @@ namespace MultiServerEngine.Peer.Server.Interfaces
 {
     public interface IServerPeerFactory
     {
-        T CreateServerPeer<T>(IServerConfiguration configuration) where T : ServerPeerBase;
+        T CreateServerPeer<T>(IConfiguration configuration) where T : ServerPeerBase;
     }
 }

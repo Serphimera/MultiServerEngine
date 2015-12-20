@@ -2,7 +2,7 @@
 {
     public interface IServerApplication
     {
-        void Setu();
+        void Setup();
         void TearDown();
         void OnStopRequested();
         void OnServerConnectionFailed(int errorCode, string errorMessage, object state);

@@ -4,7 +4,7 @@ using MultiServerEngine.Configuration.Interfaces;
 
 namespace MultiServerEngine.Configuration.Implementation
 {
-    public class ServerConfiguration : IConfiguration
+    public class ClientConfiguration : IConfiguration
     {
         private readonly IList<object> _configuration = new List<object>();
 

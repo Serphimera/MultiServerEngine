@@ -5,6 +5,6 @@ namespace MultiServerEngine.Peer.Client.Interfaces
 {
     public interface IClientPeerFactory
     {
-        T CreateClientPeer<T>(IServerConfiguration configuration) where T : PeerBase;
+        T CreateClientPeer<T>(IConfiguration configuration) where T : PeerBase;
     }
 }

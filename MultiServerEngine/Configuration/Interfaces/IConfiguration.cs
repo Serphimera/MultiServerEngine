@@ -1,8 +1,8 @@
 ﻿namespace MultiServerEngine.Configuration.Interfaces
 {
-    public interface IServerConfiguration
+    public interface IConfiguration
     {
-        void AddConfigutation(object configuration);
+        void AddConfiguration(object configuration);
         T GetConfiguration<T>() where T : class;
     }
 }
