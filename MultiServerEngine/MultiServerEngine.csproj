@@ -122,6 +122,9 @@
     <Folder Include="Operation\Interfaces\" />
     <Folder Include="Telegram\Implementation\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\SQL-Scripts\par_t2015-12-21 23-55-06.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
